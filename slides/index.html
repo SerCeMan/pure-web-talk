@@ -38,18 +38,18 @@
                     <pre><code class="clojure hljs" data-trim>
                     (+ 1 1) ; => 2
                     </code></pre>
-                    <pre><code class="clojure hljs" data-trim>
+                    <pre class="fragment"><code class="clojure hljs" data-trim>
                     (def inc (fn [a] (+ a 1)) ; => fn
                     (defn inc [a] (+ a 1)) ; => fn
                     (def inc #(+ %1 1)) ; => fn
                     (inc 5) ; => 6
                     </code></pre>
-                    <pre><code class="clojure hljs" data-trim>
+                    <pre class="fragment"><code class="clojure hljs" data-trim>
                     (let [a 1 b 2]
                       (> a b)) ; => false
                     (if true 1 2) ; => 1
                     </code></pre>
-                    <pre><code class="clojure hljs" data-trim>
+                    <pre class="fragment"><code class="clojure hljs" data-trim>
                     '(1 2 3)    ; list
                     [1 2 3]     ; vector
                     #{1 2 3}    ; set
@@ -59,10 +59,6 @@
 
                 <section>
                     <h2>State</h2>
-                    <!--<pre><code class="clojure hljs" data-trim>-->
-                    <!--(def k 1)-->
-                    <!--(defonce k 1)-->
-                    <!--</code></pre>-->
 
                     <pre><code class="clojure hljs" data-trim>
                     (def m {:a 1 :b 2})
@@ -70,7 +66,7 @@
                     m ; => {:a 1 :b 2}
                     </code></pre>
 
-                    <pre><code class="clojure hljs" data-trim>
+                    <pre class="fragment"><code class="clojure hljs" data-trim>
                     (def s (atom 0))
                     @s ; => 0
                     (swap! s inc)
@@ -148,7 +144,7 @@
 
                     ; [user "MyName"]
                     </code></pre>
-                    <pre><code class="clojure hljs" data-trim>
+                    <pre  class="fragment"><code class="clojure hljs" data-trim>
                     (defn user [name]
                       (fn []
                         [:div
@@ -165,7 +161,7 @@
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
-		<script src="js/live.js"></script>
+		<!--<script src="js/live.js"></script>-->
 
 		<script>
 			// More info https://github.com/hakimel/reveal.js#configuration

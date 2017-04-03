@@ -9,18 +9,22 @@
 
 (enable-console-print!)
 
-(reg-event-db
-  :initialize
-  (fn [_ _]
-    {:todos {1 {:message "clean up config"
-                :done    false}
-             2 {:message "clean up smth else"
-                :done    false}}}))
-
 (reg-sub
   :by-path
   (fn [db [_ path]]
     (get-in db path)))
+
+(reg-event-db
+  :initialize
+  (fn [db _]
+    (if (= db {})
+      {:todos {1 {:message "talk about fp"
+                  :done    false}
+               2 {:message "talk about clojure"
+                  :done    false}
+               3 {:message "exterminate imperative programming"
+                  :done    false}}}
+      db)))
 
 (reg-event-db
   :delete-todo
@@ -53,7 +57,6 @@
                    :label "Delete"
                    :on-click #(dispatch [:delete-todo todo-path])]]])))
 
-
 (defn todo-list [todos path]
   (let [keys (reaction (keys @todos))]
     (fn []
@@ -61,8 +64,7 @@
        :children (for [k @keys]
                    ^{:key k} [todo-row todos path k])])))
 
-
-(defn ui [todos]
+(defn ui []
   (let [path [:todos]
         todos (subscribe [:by-path path])]
     [:div
@@ -74,6 +76,6 @@
 
 (defn ^:export run
   []
-  (rf/dispatch-sync [:initialize])                          ;; puts a value into application state
-  (r/render [ui]                                            ;; mount the application's ui into '<div id="app" />'
+  (rf/dispatch [:initialize])
+  (r/render [ui]
             (.getElementById js/document "app")))
